@@ -2,12 +2,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
+  // read file and save as vector of pairs
   ifstream myfile;
   myfile.open (argv[1]);
+
   int n;
   myfile >> n;
 
@@ -19,12 +22,10 @@ int main(int argc, char *argv[]) {
     input.push_back(p);
   }
 
+  // initialize tree using vector of pairs
   rb_tree tree(input);
-  tree.increase(17, 1);
-  tree.increase(18, 1);
-  tree.increase(19, 1);
-  tree.increase(20, 1);
 
+  // read commands
   while (true) {
     string command;
     cin >> command;
@@ -60,6 +61,9 @@ int main(int argc, char *argv[]) {
     }
     else if (command == "print") {
       tree.level_print();
+    }
+    else if (command == "quit") {
+      break;
     }
   }
 }
